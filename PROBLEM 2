@@ -1,0 +1,76 @@
+//Create a program that would compute the following values based on the given sides of the triangle. Let the measurements of the sides be a user-input. //
+//A. Compute for all interior angles.//
+//B. Classify whether scalene, isosceles, or equilateral.//
+//C. Determine the area and perimeter. //
+//D. Classify whether acute triangle, right triangle, or obtuse triangle.//
+//E. Compute for length of apothem and circumcenter. //
+#include<iostream>
+#include<conio.h>
+#include<cmath>
+using namespace std; 
+ 
+int main()
+{
+	//declaring variables
+    double a, b, c, s, area, peri, inta, intb, intc, apo, circ;
+    
+    //inputing the sides 
+	cout << "Enter the length of side A: "; cin >> a;
+	cout << "Enter the length of side B: "; cin >> b;
+	cout << "Enter the length of side C: "; cin >> c;
+	
+	//FORMULA INTERIOR ANGLES
+	//Computing for Interior Angles
+	inta = acos(((b*b)+(c*c)-(a*a))/(2*b*c));
+	intb = acos(((a*a)+(c*c)-(b*b))/(2*a*c));
+	intc = acos(((a*a)+(b*b)-(c*c))/(2*a*b)); 
+	
+	//the int answer is in rad to convert it to degrees multiply by 57.2958
+	cout << "The interior angle between side A and B: " << inta * 57.2958 << " degrees" << endl;
+	cout << "The interior angle between side B and C: " << intb * 57.2958 << " degrees" << endl;
+	cout << "The interior angle between side C and A: " << intc * 57.2958<< " degrees" << endl; 
+	                                                                     
+ 	//What kind of triangle based on sides
+	if (a == b && b == c && c == a)
+	cout << "This is an Equilateral triangle" << endl;
+	else if (a == b || b == c || c == a)
+	cout << "This is an Isosceles triangle" << endl;
+	else
+	cout << "This is an Scalene Triangle" << endl;
+	
+	//Formula for perimeter
+	peri = a + b + c;  s = peri/2;
+	
+	//Formula for area
+	area = sqrt(s*((s-a)*(s-b)*(s-c)));
+	
+	//computing the perimeter and area
+	cout << "The perimeter is: " << peri << endl;
+	cout << "The area is: " << area << endl;
+	
+	//Classifying the kind of traingle based on its interior angle
+	if (inta < 90 && intb < 90 && intc < 90)
+	cout << "This is an Acute triangle" << endl;
+	else if (inta == 90 || intb == 90 || intc == 90)
+	cout << "This is a Right triangle" << endl;
+	else
+	cout << "This is a Obtuse triangle" << endl;
+	
+	//computing the length of apothem
+	apo = a/(2*tan(3.14159/3));
+	cout << "The length of the apothem of the triangle is: " << apo << endl;
+	
+	//computing the length of circumcenter
+	if (a == b && a == c)  
+	{                 
+  	//formula of circumcenter   
+ 	circ = (((a +b + c)/3) / sqrt(3));
+  	cout << "The length of the circumcenter is: " << circ; 
+ 	}   
+ 	if (a != b || a != c)
+	{    
+	circ - (((a*b*c)/(sqrt((peri)*(b+c-a)*((c+a-b)*(a+b-c))))));
+	cout << "The length of the circumcenter is: " << circ;
+	}  
+	return 0;
+ } 
