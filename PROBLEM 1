@@ -1,0 +1,175 @@
+//input 50 names//
+// input scores per component//
+//9 quizzes = 50 pts each == 30%// 
+// activities 9 pretest =100 pts each & 3 probset = 150 pts each == 15% // 
+// Major exams = prelims over 100 = 25% finals over 100 = 30% // 
+//program will output raw grade and GPA //
+// program will show pass or fail//
+//program will write top 10//
+#include<iostream>
+#include<string>
+#include <iomanip>
+using namespace std;
+int main()
+{
+//declaring 50 variables that will be inputted in the code
+string name[50];
+double quiz[50], act[50], major[50], prelim[50], final[50], grades[50], gwa[50];
+//using bool as a conditional statement to know if the student PASSED OR FAILED
+bool pass[50];
+// using loop to store 50 values of students
+for (int i = 0; i < 50; ++i)
+{
+cout << "Enter name: ";
+if (i != 0)
+{
+cin.ignore();
+}
+//using getline to cancel out the "name: name: name" that appears when space is used
+getline(cin, name[i]);
+cout << "\n";
+
+//quiz[i] = quizzes();
+{
+// declaring the quiz variables
+int q1, q2, q3, q4, q5, q6, q7, q8, q9;
+//declaring quizper as double so that it will store decimals and the decimals would not cancel out
+double quizper;
+//displaying and inputting variables
+cout << " Input score on quiz 1: "; cin >> q1; cout << "\n";
+cout << " Input score on quiz 2: "; cin >> q2; cout << "\n";
+cout << " Input score on quiz 3: "; cin >> q3; cout << "\n";
+cout << " Input score on quiz 4: "; cin >> q4; cout << "\n";
+cout << " Input score on quiz 5: "; cin >> q5; cout << "\n";
+cout << " Input score on quiz 6: "; cin >> q6; cout << "\n";
+cout << " Input score on quiz 7: "; cin >> q7; cout << "\n";
+cout << " Input score on quiz 8: "; cin >> q8; cout << "\n";
+cout << " Input score on quiz 9: "; cin >> q9; cout << "\n";
+//formula for quizzes which comprises 30 percent of grades
+quizper = (((q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9) / 450.0) *
+100) * .3;
+//displaying the answers
+cout << "You have " << quizper << " % over 30%\n";
+quiz[i] = quizper;
+}
+//For the activity part which covers 15 percent of the grades
+//act[i] = activities();
+{
+//declaring the variables for pretest and problem sets
+int p1, p2, p3, p4, p5, p6, p7, p8, p9, prb1, prb2, prb3;
+double actper;
+//displaying and inputting variables
+cout << "Input scores on pretest 1: "; cin >> p1; cout << "\n";
+cout << "Input scores on pretest 2: "; cin >> p2; cout << "\n";
+cout << "Input scores on pretest 3: "; cin >> p3; cout << "\n";
+cout << "Input scores on pretest 4: "; cin >> p4; cout << "\n";
+ 
+cout << "Input scores on pretest 5: "; cin >> p5; cout << "\n";
+cout << "Input scores on pretest 6: "; cin >> p6; cout << "\n";
+cout << "Input scores on pretest 7: "; cin >> p7; cout << "\n";
+cout << "Input scores on pretest 8: "; cin >> p8; cout << "\n";
+cout << "Input scores on pretest 9: "; cin >> p9; cout << "\n";
+cout << "Input scores on problem set 1: "; cin >> prb1; cout << "\n";
+cout << "Input scores on problem set 2: "; cin >> prb2; cout << "\n";
+cout << "Input scores on problem set 3: "; cin >> prb3; cout << "\n";
+//formula for activities
+actper = (((p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9 + prb1 + prb2 +
+prb3) / 1350.0) * 100) * .15;
+//displaying results
+cout << "You have " << actper << " % over 15%\n";
+act[i] = actper;
+}
+//major[i] = majors();
+{ //declaring variables for major exams
+int prelims, finals;
+double majorper;
+//displaying variables
+cout << "Input prelims score: "; cin >> prelims; cout << "\n";
+cout << "Input finals score: "; cin >> finals; cout << "\n";
+//formula for major exams
+majorper = ((prelims) * .25 + (finals * .3));
+//displaying variables
+cout << "You have " << majorper << " % over 55%\n";
+prelim[i] = prelims;
+final[i] = finals;
+major[i] = majorper;
+}
+//formula for grades
+grades[i] = quiz[i] + act[i] + major[i];
+//conditional statement to know if the student passed/failed
+
+pass[i] = (grades[i] >= 60);
+//if-else statement to convert the raw grade to the transmuted grade
+if (grades[i] < 60)
+{
+gwa[i] = 5;
+}
+else if (grades[i] <= 64.44)
+{
+gwa[i] = 3;
+}
+else if (grades[i] <= 68.89)
+{
+gwa[i] = 2.75;
+}
+else if (grades[i] <= 73.33)
+{
+gwa[i] = 2.5;
+}
+else if (grades[i] <= 77.78)
+{
+gwa[i] = 2.25;
+}
+else if (grades[i] <= 82.22)
+{
+gwa[i] = 2;
+}
+else if (grades[i] <= 86.67)
+{
+gwa[i] = 1.75;
+}
+else if (grades[i] <= 91.11)
+{
+gwa[i] = 1.5;
+}
+else if (grades[i] <= 95.56)
+{
+gwa[i] = 1.25;
+}
+else
+ 
+{
+gwa[i] = 1;
+}
+//displaying values of the raw grade, transmuted grade ,and declaring if the person passed or failed
+cout<< name[i] << " "<<(pass[i]?"YOU PASSED!":"YOU FAILED!!!")<<
+":\n\tPrelimenary exam: "<<prelim[i] << "/100";
+cout<< "\n\tFinal exam: "<< final[i] << "/100";
+cout<< "\n\tRaw score: " << setprecision(2) << fixed << quiz[i] << "% + " << setprecision(2) << fixed << act[i] << "% + " << setprecision(2) << fixed << major[i] << "% =" << setprecision(2) << fixed << grades[i];
+cout<< "%\n\tTransmuted grade: "<< fixed << setprecision(2) << gwa[i] <<
+"\n\n";
+}
+//sorting to know the top students
+for (int i = 0; i < 49; ++i)
+{
+for (int j = 0; j < 49 - i; ++j)
+{
+if (grades[j] < grades[j + 1])
+{
+double temp_grade = grades[j];
+grades[j] = grades[j + 1];
+grades[j + 1] = temp_grade;
+string temp_name = name[j];
+name[j] = name[j + 1];
+name[j + 1] = temp_name;
+}
+}
+}
+//showing the top 10 students
+cout << "Top 10:\n";
+for (int i = 0; i < 10; ++i)
+{
+cout << "Top" << i + 1 << name[i] << ": " << grades[i] << "\n";
+}
+return 0;
+}
